@@ -1,0 +1,64 @@
+﻿#DataPager1 a, #DataPager1 span,
+#DataPager2 a, #DataPager2 span {
+    position: relative;
+    float: left;
+    padding: 6px 12px;
+    margin-left: -1px;
+    line-height: 1.428571429;
+    text-decoration: none;
+    background-color: #fff;
+    border: 1px solid #ddd;
+}
+#DataPager1 a, #DataPager2 a { color: #A7AF12; }
+#DataPager1 a:hover,
+#DataPager2 a:hover {
+    background-color: #eee;
+    color: #A7AF12;
+}
+#DataPager1 a.aspNetDisabled, 
+#DataPager2 a.aspNetDisabled,
+.aspNetDisabled {
+    color: #999;
+    cursor: not-allowed;
+    background-color: #fff;
+    border-color: #ddd;
+}
+#DataPager1 a.aspNetDisabled:hover, 
+#DataPager2 a.aspNetDisabled:hover, 
+.aspNetDisabled:hover  {
+    color: #999;
+    cursor: not-allowed;
+    background-color: #fff !important;
+    border-color: #ddd;
+}
+#DataPager1 span,
+#DataPager2 span {
+    z-index: 2;
+    color: #fff;
+    cursor: default;
+    background-color: #A7AF12;
+    border-color: #A7AF12;
+}
+
+table th {
+    cursor: pointer;
+}
+.table-bordered>tbody>tr>td.fixesCol, 
+.table-bordered>tbody>tr>td.suffixCol, 
+.table-bordered>tbody>tr>td.reasonCol {
+    display:none;
+}
+.fixesCol .half {
+    width: 50%;
+    padding: 8px;
+    border-right: 1px solid #ddd;
+    height: 100%;
+    vertical-align: middle;
+    display: table-cell;
+}
+.fixesTable {
+    width:100%;
+}
+.fixesTable td {
+    width:50%;
+}

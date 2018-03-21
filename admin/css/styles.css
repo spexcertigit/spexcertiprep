@@ -1,0 +1,111 @@
+﻿* {
+    margin:0;
+    padding:0;
+}
+body {
+    background-color: #f2f2f2;
+    color: #333;
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    margin: 0;
+    padding: 0;
+}
+#loginpage {
+    background:#fff url(/images/mainbg.png) repeat-x;
+}
+.login-container {
+    width:460px;
+    margin:auto;
+    padding: 10% 0;
+    text-align:center;
+}
+
+.loginform {
+  margin-top: 20px;
+  margin-left: 0;
+  padding: 50px;
+  font-weight: 400;
+  overflow: hidden;
+  background: #fff;
+  -webkit-box-shadow: 0 1px 3px rgba(0,0,0,.13);
+  box-shadow: 0 1px 3px rgba(0,0,0,.13);
+  border-radius:20px;
+}
+
+.loginform p {
+    margin-bottom:5px;
+}
+
+.loginform input[type=text], .loginform input[type=password]{
+    font-size: 20px;
+    width: 100%;
+    padding: 7px;
+    margin: 2px 6px 16px 0;
+    box-sizing:border-box;
+    text-align:center;
+    border-radius:7px;
+}
+
+.loginform input[type=password] {
+    margin-bottom:0;
+}
+
+.button-primary {
+    background: #9FA614;
+    border-color: #8E9605;
+    -webkit-box-shadow: inset 0 1px 0 rgba(159, 166, 20,0.5),0 1px 0 rgba(0,0,0,.15);
+    box-shadow: inset 0 1px 0 rgba(159, 166, 20,0.5),0 1px 0 rgba(0,0,0,.15);
+    color: #fff;
+    text-decoration: none;
+    line-height: 28px;
+    padding: 8px 24px 12px;
+    vertical-align: baseline;
+    font-size: 20px;
+    line-height: 26px;
+    margin: 20px auto 0;
+    width: 100%;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-appearance: none;
+    -webkit-border-radius: 3px;
+    border-radius: 3px;
+    white-space: nowrap;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.button-primary:hover {
+    background: #B5BD18;
+    border-color: #9FA614;
+    -webkit-box-shadow: inset 0 1px 0 rgba(159, 166, 20,0.6);
+    box-shadow: inset 0 1px 0 rgba(159, 166, 20,0.6);
+    color: #fff;
+}
+
+.login #login_error {
+    background-color: #ffebe8;
+    border-color: #c00;
+    border-radius: 3px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+#login_error, .login .message {
+    margin: 0 0 16px 8px;
+    padding: 12px;
+}
+
+#footer {
+    height: 17px;
+    text-align: right;
+    font-size: 10px;
+    color: #7c7c7c;
+    padding-right: 8px;
+    padding-top: 4px;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+.loginform img { margin-bottom: 20px;}
