@@ -1,0 +1,18 @@
+.FrameBackground {  background-color: #5A5B5D}
+.Titles {  font-family: Tahoma, Verdana, sans-serif; font-size: 12px; font-weight: bold}
+.Text {  font-family: Arial, Helvetica, sans-serif; font-size: 12px}
+.FormBackground {  background-color: #E6E6E6}
+.FormField {  font-family: Tahoma, Verdana, sans-serif; font-size: 12px; }
+.ChatBackground {  background-color: #FFFFFF}
+.ErrorText {  font-family: Tahoma, Verdana, sans-serif; font-size: 12px; font-weight: bold; color: #FF0000}
+.usertext {  font-family: Tahoma, Verdana, sans-serif; font-size: 12px; color: #003399}
+.reptext {  font-family: Tahoma, Verdana, sans-serif; font-size: 12px; color: #FF0000}
+.SystemMsg {  font-family: Tahoma, Verdana, sans-serif; font-size: 12px; font-weight: normal; background-color: #F3F3F3; border: 1px #666666 solid}
+.Smalltext {  font-family: Tahoma, Verdana, Arial; font-size: 9px}
+.BkgUserChatTop {
+	background-image: url(images/bkgUserChatTop.gif);
+	background-repeat: no-repeat;
+	background-position: right top;
+	background-color: #FFFFFF;
+	border: 1px solid #999999;
+}

@@ -1,0 +1,62 @@
+.OptionName {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	background-color: #CCCCCC;
+}
+.OptionFields {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	background-color: #F3F3F3;
+}
+.ErrorNotices {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FF0000;
+}
+.GeneralText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}
+.SmallNotes {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
+.Headers {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FFFFFF;
+	background-color: #003366;
+}
+.SearchCell {
+	background-color: #666666;
+}
+.CriticalError {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10pt;
+	font-weight: bold;
+	color: #FFFF00;
+	background-color: #FF0000;
+}
+.SoftGeneralText {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #999999;
+}
+
+ A:link {text-decoration: font-weight:bolder; color: #003399}
+ A:visited {text-decoration: font-weight:bolder; color: #003399}
+ A:active {text-decoration: font-weight:bolder; color: #003399}
+ A:hover {text-decoration: font-weight:bolder; color: red}
+	
+.MainTitles {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: bold;
+}
+.PagerText {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 9px;
+}
