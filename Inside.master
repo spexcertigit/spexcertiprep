@@ -1,0 +1,907 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Inside.master.cs" Inherits="Inside" Debug="true" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+	<head id="Head1" runat="server">
+		<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+		<meta name="robots" content="index, follow">
+		<meta name="viewport" content="width=device-width">
+		<meta http-equiv="Cache-control" content="no-cache">
+		<asp:Literal ID="litCanonical" runat="server"></asp:Literal>
+		<%=getMetatags()%>
+		<asp:ContentPlaceHolder ID="TitleContentPlaceHolder" runat="server"></asp:ContentPlaceHolder>
+		<title>SPEX CertiPrep</title>
+		<link href="/css/screen/bootstrap.min.css" rel="stylesheet" type="text/css" charset="utf-8" />
+		<link href="/css/my_layout.css" rel="stylesheet" type="text/css" charset="utf-8" />
+		<link href="~/css/screen/styles.css" rel="stylesheet" type="text/css" charset="utf-8" media="screen" Runat="Server"/>
+		<link href="/css/screen/responsive.css" rel="stylesheet" type="text/css"  media="screen"/>
+		<link href="/css/screen/responsive2.css" rel="stylesheet" type="text/css" media="screen" />
+		<link href="/css/screen/print-preview.css" rel="stylesheet" type="text/css">
+		<link href="/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" href="/css/screen/print.css" type="text/css" media="print">
+		<!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-WLPT7K');</script>
+		<!-- End Google Tag Manager -->
+		<link rel="search" type="application/opensearchdescription+xml" title="SPEX CertiPrep" href="~/SPEXSearch.xml" /> 
+		<!--[if IE 9]><link href="/css/screen/ie9.css" rel="stylesheet" type="text/css" /><![endif]-->
+		<!--[if IE 8]><link href="/css/screen/ie8.css" rel="stylesheet" type="text/css" /><![endif]-->
+		<!--[if lte IE 7]>
+			<link href="/css/screen/ie7.css" rel="stylesheet" type="text/css" />
+			<link href="/css/patches/patch_layout.css" rel="stylesheet" type="text/css" />
+			<script src="/js/json3.js" type="text/javascript"></script>
+		<![endif]-->
+		
+		<%--Live Tile Metadata...--%>
+		<!-- IE11 pinning and live tiles -->
+		<meta name="application-name" content="SPEX CertiPrep"/>
+		<meta name="msapplication-config" content="browserconfig.xml" />
+		<meta name="msapplication-task" content="name=Inorganic;action-uri=/products/inorganic;icon-uri=/favicon.ico" />
+		<meta name="msapplication-task" content="name=Organic;action-uri=/products/organic;icon-uri=/favicon.ico" />
+		<meta name="msapplication-task" content="name=Customs;action-uri=/products/custom-standards.aspx;icon-uri=/favicon.ico" />
+		<meta name="msapplication-task" content="name=SPEX CertiPrep on Twitter;action-uri=http://twitter.com/spexcertiprep;icon-uri=/images/twitterIcon.ico" />
+		<meta name="msapplication-task" content="name=SPEX CertiPrep on Facebook;action-uri=http://facebook.com/spexcertiprep;icon-uri=/images/facebookIcon.ico" />
+		<meta name="msapplication-task" content="name=SPEX CertiPrep on YouTube;action-uri=http://youtube.com/spexcertiprep;icon-uri=/images/youTubeIcon.ico" />
+		<meta name="msapplication-task" content="name=SPEX CertiPrep on LinkedIn;action-uri=http://www.youtube.com/user/SPEXCertiPrep;icon-uri=/images/linkedInIcon.ico" />
+		<%--End Live Tile Metadata...--%>
+
+		<asp:ContentPlaceHolder id="cphHead" runat="server"></asp:ContentPlaceHolder>
+		
+	</head>
+	<body>		
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WLPT7K"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		<form id="form1" runat="server">
+			<input type="hidden" value="" name="clientScreenHeight" id="clientScreenHeight" />
+			<div class="header-wrapper">
+				<asp:Panel ID="mask_layout" CssClass="mask-layout" ClientIDMode="Static" runat="server"></asp:Panel>
+				<asp:Panel ID="login_container_opacity" CssClass="login-container-opacity" ClientIDMode="Static" runat="server">
+					<div id="footer-login-background"></div> 
+					<div class="close-x"></div>
+					<div id="login-container">
+						<asp:Panel ID="errorbox" ClientIDMode="Static" runat="server" Visible="false" EnableViewState="false">
+							<asp:Literal ID="ltrErrorMessage" runat="server" />
+						</asp:Panel>				
+						<asp:Panel ID="loginformnew" ClientIDMode="Static"  DefaultButton="cmdLogin" runat="server">						 
+							<h3>Login</h3>
+							<h5>Existing Online customers</h5>						
+							<div> 
+								<asp:Label ID="lblEmail" AssociatedControlID="Email" Text="" runat="server" />
+								<asp:TextBox ID="Email" CssClass="text-input" placeholder="Enter your username" runat="server" />
+								<asp:RequiredFieldValidator ID="rfvEmail"  ControlToValidate="Email" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="This field is required" ValidationGroup="vgLogin" />
+							</div>
+							<div>
+								<asp:Label ID="lbllogin_password" AssociatedControlID="login_password" runat="server"></asp:Label>
+								<asp:TextBox ID="login_password" placeholder="Enter your password" CssClass="text-input" TextMode="Password" runat="server" />
+								<asp:RequiredFieldValidator ID="rfvlogin_password" ControlToValidate="login_password" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="This field is required" ValidationGroup="vgLogin" />
+							</div>								
+							<a href="/forgotpassword.aspx">Forgot Your Password</a>
+							<div class="type-button">
+								<asp:Button ID="cmdLogin" Text="" runat="server" CssClass="submitbutton" onclick="cmdLogin_Click" ValidationGroup="vgLogin" />
+								<asp:HiddenField ID="redirect" runat="server" />
+							</div>
+						</asp:Panel>
+					</div>
+				</asp:Panel>
+				<div class="header-topa">
+					<a id="top"></a>
+					<div class="header-topa-blocka">
+						<div class="topa">
+							<div class="topa-box2">
+								<ul>
+								<% if (HttpContext.Current.Request.Url.AbsolutePath != "/order_summary.aspx") {
+									if (isIE6) { %>
+									<li style="padding-top:14px;">
+										<div class="topa-right_link chat"><script src="http://www.spexcsp.com/chat/als-ie6.aspx?d=1" type="text/javascript"></script></div>
+									</li>								
+								<% } else { %>
+									<li style="padding-top:10px;margin:0">
+										<div class="topa-right_link chat live-chat">
+											<!--<img src="http://spexcsp.com/chat/als.aspx?u=&d=1&getstatus=1" class="chat_status_image" border="0">
+											<img src="/images/chat-bg2.png" class="live-chat" />-->
+											<div class="status">•</div> Live Chat
+										</div>
+									</li>
+								<% } } %>					
+									<li class="websislinks lang">
+										<div class="topa-right_link flag">
+											<asp:DropDownList ID="regionDD" runat="server" AutoPostBack="True" OnSelectedIndexChanged="regionDD_SelectedIndexChanged" style="width:165px;">
+												<asp:ListItem Value="USA" title="/images/us_flag.png" Text="United States" />
+												<asp:ListItem Value="UK" title="/images/uk_flag.png" Text="United Kingdom" />
+												<asp:ListItem Value="OT" title="/images/ot_flag.png" Text="Other" />
+											</asp:DropDownList>
+										</div>
+									</li>
+									<li id="current_websis" class="websislinks"><img src="/images/spexcp.png" alt="SPEX CertiPrep" /></li>
+									<li class="websislinks"><a href="<%=SampLink%>" title="SPEX SamplePrep"><img src="/images/spexsp.png" alt="SPEX SamplePrep"/></a></li>
+									<li class="websislinks" style="border-left: 1px solid #979699;"><a href="http://www.spexeurope.eu/" title="SPEX Europe"><img src="/images/spexeu.png" alt="SPEX Europe"/></a></li>
+								</ul>
+							</div>	
+						</div>
+					</div>
+				</div>
+				<div class="header-topa-blockb">
+					<div class="topa-blockb">
+						<div class="topa-blockb-left">
+							<a href="/"><img class="site_logo" src="/images/logo.png" alt="SPEX CertiPrep" /></a>
+							<a href="/"><img class="mobile-site_logo" src="/images/mobile-logo.png" alt="SPEX CertiPrep" /></a>
+						</div>
+						<div class="topa-blockb-left second">
+							<span class="call-us-number"><asp:Label ID="lblPhoneNumber" runat="server" Text="1-732-549-7144"></asp:Label></span>
+							<div class="headerCart" onclick="location.replace('/order_summary.aspx')">
+								<div class="footer_content">
+									Total: 
+									<span style="color:#A3B405;font-weight:bold;">
+										<asp:Literal ID="ltrCurrencySymbol5" runat="server" />
+										<%=String.Format("{0:##,##0.00}", StartingPrice)%>
+									</span>
+								</div>
+								<a class="smallCartBtn" href="/order_summary.aspx" title="Go to Cart"><div class="cart_lbl"></div></a>
+								<div class="mobile_cart_lbl"></div>
+								<div id="totalitems" class="itemCount"><%=TotalProductCountNum%></div>
+								
+								<div style="clear:both"></div>
+							</div>
+							
+							<%=getNotification()%>
+							
+							<div class="topa-box1"> 
+								<ul>
+									<% if (LoggedIn) { %>
+									<li><b>Hello, <%=DisplayName%>&nbsp;&nbsp;&nbsp|&nbsp;&nbsp;&nbsp;</b><a href="javascript:void(0)" onclick="ExecuteCodeBehindClickEvent()"><asp:Button ID="logoutLink" runat="server" Text="Submit" OnClick="lbLogout_Click" Style="display: none" />Log Out</a>&nbsp;&nbsp;&nbsp|&nbsp;&nbsp;&nbsp;
+									<a href="/customer-center/settings/" class="my-account" style="display:inline-block">My Account</a>&nbsp;&nbsp;&nbsp|</li>	
+									<% } else { %>
+									<li id="login-handle"><b>Welcome&nbsp;&nbsp;&nbsp|&nbsp;&nbsp;&nbsp;</b><a href="javascript:void(0)">Login</a></li>
+									<li>or</li>
+									<li>
+										<a href="/register.aspx">Register</a>&nbsp;&nbsp;&nbsp|&nbsp;&nbsp;&nbsp;
+										<a id="myAcc" href="javascript:void(0)" class="my-account">My Account</a>&nbsp;&nbsp;&nbsp|
+									</li>
+									<% } %>
+									<li>
+										<div class="top-dealer-link">
+											<a href="http://spexcertiprep.drmportal.com/" class="dealer-login">Dealer Login</a>
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					
+					</div>
+				</div>
+				<div class="header-topa-nav">
+					<div class="topa-nav-inner">
+						<div class="menudrop"><img src="/images/menu-drop.png" /></div>
+						<div class="bigmagnifier"><a onclick="searchbutton_Click()"><img src="/images/big-magnifier.png" /></a></div>
+						<div class="top-navi">
+							<ul id="menu" class="topmenu">
+								<li class="nav-menu home"><a href="/"><img src="/images/home-new.png" alt="Home" title="Home" /></a></li>
+								<li class="nav-menu first"><span class="nav-menu-indent"><a class="topm">Products</a></span>
+									<ul class="sub-menu">
+										<li><a href="/products/inorganic">Inorganic Standards</a>
+											<ul class="sub-sub-menu">
+												<li><a href="/search_inorganic_category.aspx?cat=1">AA/ICP Standards</a></li>
+												<li><a href="/search_inorganic_category.aspx?cat=2">CLP Standards</a></li>
+												<li><a href="/search_inorganic_category.aspx?cat=3">ICP-MS Standards</a></li>
+												<li><a href="/30mL-plasma-shots/">30mL Plasma Shots&reg;</a></li>
+												<li><a href="/testing-kits">Testing Kits</a></li>
+												<li><a href="/search_inorganic_category.aspx?cat=4">IC/ISE Standards</a></li>
+												<li><a href="/search_inorganic_category.aspx?cat=6">Organometallic Oil Standards</a></li>
+												<li><a href="/search_inorganic_category.aspx?cat=7">XRF/Fusion</a></li>
+												<li><a href="/products/USP">USP Standards</a></li>
+												<li><a href="/inorganic_international.aspx">Inorganic International</a></li>	
+												<li><a href="/knowledge-base/speciation">Speciation Standards</a></li>
+												<li><a href="/knowledge-base/carbon-black-reagents">Carbon Black</a></li>
+												<li><a href="/inorganic-standards/consumer-safety-standards-inorganic">Consumer Safety Standards </a></li>
+											</ul>
+										</li>
+										<li><a href="/products/organic">Organic Standards</a>
+											<ul class="sub-sub-menu">
+												<li><a href="/organic-standards/gas-chromatography-and-mass-spectrometry">GC/MS Standards</a></li>
+												<li><a href="/ECS/">ECS Standards for GC/MS</a></li>
+												<li><a href="/organic-standards/liquid-chromatography-and-mass-spectrometry">LC/MS Standards</a></li>
+												<li><a href="/products/pesticides">Pesticide Standards</a></li>	
+												<li><a href="/products/USP">USP Standards</a></li>
+												<li><a href="/products/wine-standards">Standards for Wine</a></li>
+												<li><a href="/products/cannabis">Cannabis</a></li>	
+												<li><a href="/organic_international.aspx">Organic International</a></li>
+												<li><a href="/knowledge-base/speciation">Speciation Standards</a></li>
+												<li><a href="/organic-standards/consumer-safety-standards-organic">Consumer Safety Standards </a></li>
+												<li><a href="/organic-standards/semivolatiles">Semivolatiles</a></li>
+												<li><a href="/organic-standards/volatiles">Volatiles</a></li>
+											</ul>
+										</li>
+										
+										<li><a href="/products/custom-standards.aspx">Custom Products</a>
+											<ul class="sub-sub-menu">
+												<li><a href="/products/custom-standards_organic.aspx">Organic Standards</a></li>
+												<li><a href="/products/custom-standards_inorganic.aspx">Inorganic Standards</a></li>
+												<li><a href="/products/private-label.aspx">Private Label</a></li>
+												<li><a href="/products/oqpv-pq.aspx">SPEX CertiPrep IQ</a></li>
+												<li><a href="/products/chemical-processing-packaging.aspx">Chemical Processing/Packaging</a></li>
+											</ul>
+										</li>
+										<li><a href="/qc-samples.aspx">QC Samples</a></li>
+										<li><a href="/search_labstuff.aspx">Laboratory Products</a></li>
+										<li><a>C of A and SDS</a>
+											<ul class="sub-sub-menu">
+												<li><a href="/products/SPEXertificate.aspx">SPEXertificate</a></li>
+												<li><a href="/knowledge-base/MSDS.aspx">SDS</a></li>
+											</ul>
+										</li>
+										<li><a href="/buffers-and-conductivity.aspx">Buffers / Conductivity</a></li>
+									</ul>
+								</li>
+								<li class="nav-menu"><span class="nav-menu-indent"><a class="topm">Purchasing Options</a></span>
+									<ul class="sub-menu">
+										<li><a href="/purchase-options/ordering-information">Ordering Information</a></li>
+										<li><a href="/purchase-options/SPoints-Rewards">SPoints Rewards</a></li>
+										<li><a href="/purchase-options/loyal-customer-program">Loyal Customer Programs</a></li>
+									</ul>
+								</li>
+								<li class="nav-menu"><span class="nav-menu-indent"><a href="/knowledge-base/" class="topm">Knowledge Base</a></span>
+									<ul class="sub-menu">
+										<li><a href="#">Downloads</a>
+											<ul class="sub-sub-menu">
+												<li><a href="/knowledge-base/MSDS.aspx">SDS</a></li>
+												<li><a href="/products/SPEXertificate.aspx">SPEXertificates</a></li>
+												<li><a href="/knowledge-base/catalog-request.aspx">Catalogs &amp; Product Literature</a>
+												</li>
+											</ul>
+										</li>
+										<li><a href="#">Tools, Tips & Tricks</a>
+											<ul class="sub-sub-menu">
+												<li><a href="/knowledge-base/ask-a-chemist.aspx">Ask A Chemist</a></li>
+												<li><a href="/knowledge-base/dilutulator.aspx">Dilut-U-lator</a></li>
+												<li><a href="/knowledge-base/periodic-table.aspx">Periodic Table</a></li>
+												<li><a href="/knowledge-base/conversion-table.aspx">Conversion Table</a></li>
+												<li><a href="/knowledge-base/additional-tools.aspx">Additional Tools</a></li>
+											</ul>
+										</li>
+										<li><a href="#">Resources & Publications</a>
+											<ul class="sub-sub-menu">
+												<li><a href="/knowledge-base/product-guides">Product Guides</a></li>
+												<li><a href="/knowledge-base/webinars.aspx">Webinars</a></li>
+												<li><a href="/knowledge-base/posters-presentations">Posters &amp; Presentations</a></li>
+												<li><a href="/knowledge-base/appnotes-whitepapers">Application Notes &amp; White Papers</a></li>
+												<li><a href="/knowledge-base/spex-speaker">SPEX Speaker</a></li>
+												<li><a href="/knowledge-base/optimize">Optimize</a></li>
+												<li><a href="/knowledge-base/resources">Recommended Reading</a></li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+								<li class="nav-menu"><span class="nav-menu-indent"><a class="topm">News &amp; Events</a></span>
+									<ul class="sub-menu">
+										<li><a href="/news-and-events/news_updates.aspx">News Updates</a></li>
+										<li><a href="/news-and-events/tradeshow-calendar.aspx">Events</a></li>
+										<li><a href="https://spexcertiprepblog.wordpress.com/" target="_blank">Blog</a></li>
+									</ul>
+								</li>
+								<li class="nav-menu"><span class="nav-menu-indent"><a class="topm">About</a></span>
+									<ul class="sub-menu">
+										<li><a href="/about-us/corporate-profile.aspx">Corporate Profile</a></li>
+										<li><a href="/about-us/directions.aspx">Directions</a></li>
+										<li><a href="/about-us/careers.aspx">Careers</a></li>
+										<li><a href="/about-us/certifications.aspx">Certifications</a></li>
+										<li class="timeline_link_menu"><a target="_blank" href="/timeline">Timeline</a></li>
+									</ul>
+								</li>
+								<li class="nav-menu last"><span class="nav-menu-indent"><a class="topm" href="/contact-us.aspx">Contact Us</a></span>
+									<ul class="sub-menu">
+										<li><a href="/about-us/sales-reps.aspx">Sales Reps</a></li>
+										<li><a href="/about-us/distributors.aspx">Distributors</a></li>
+										<li><a href="/feedback">Feedback</a></li>
+										<li>
+											<asp:LinkButton id="newsletter_submit" target="_blank" postbackurl="http://visitor.constantcontact.com/d.jsp" runat="Server" Text="Newsletter Sign-Up"></asp:LinkButton>
+										</li>
+									</ul>
+								</li>					
+							</ul>
+							<input name="m" value="1101976134161" type="hidden" />
+							<input name="p" value="oi" type="hidden" />
+							<asp:Panel ID="topright_search" ClientIDMode="Static" runat="server" DefaultButton="searchbutton">
+								<asp:TextBox ID="searchbox" ClientIDMode="Static" runat="server" placeholder="Search Part#/CAS#" autocomplete="off"/>
+								<span style="display:none;"><asp:ImageButton ID="searchbutton" ClientIDMode="Static" AlternateText="Go" Height="29" ImageAlign="Top" ImageUrl="/images/searchbutton.jpg" runat="server" Width="29" onclick="searchbutton_Click" /></span>
+							</asp:Panel>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mobile_menu">
+				<ul id="menu" class="topmenu">
+					<li class="nav-menu home"><a href="/"><img src="/images/home-btn.png" width="64" height="41"></a></li>
+					<li class="nav-menu first"><span class="nav-menu-indent"><a class="topm">Products</a></span>
+						<ul class="sub-menu">
+							<li><a href="/products/inorganic">Inorganic Standards</a>
+								<ul class="sub-sub-menu">
+									<li><a href="/search_inorganic_category.aspx?cat=1">AA/ICP Standards</a></li>
+									<li><a href="/search_inorganic_category.aspx?cat=2">CLP Standards</a></li>
+									<li><a href="/search_inorganic_category.aspx?cat=3">ICP-MS Standards</a></li>
+									<li><a href="/30mL-plasma-shots/">30mL Plasma Shots&reg;</a></li>
+									<li><a href="/testing-kits">Testing Kits</a></li>
+									<li><a href="/search_inorganic_category.aspx?cat=4">IC/ISE Standards</a></li>
+									<li><a href="/search_inorganic_category.aspx?cat=5">Cyanide Standards</a></li>
+									<li><a href="/search_inorganic_category.aspx?cat=6">Organometallic Oil Standards</a></li>
+									<li><a href="/search_inorganic_category.aspx?cat=7">XRF/Fusion</a></li>
+									<li><a href="/products/USP">USP Standards</a></li>
+									<li><a href="/search_inorganic_category.aspx?cat=8">Miscellaneous Chemistries</a></li>
+								</ul>
+							</li>
+							<li><a href="/products/organic">Organic Standards</a>
+								<ul class="sub-sub-menu">
+									<li><a href="/organic-standards/gas-chromatography-and-mass-spectrometry">GC/MS Standards</a></li>
+									<li><a href="/ECS/">ECS Standards for GC/MS</a></li>
+									<li><a href="/organic-standards/liquid-chromatography-and-mass-spectrometry">LC/MS Standards</a></li>
+									<li><a href="/products/pesticides">Pesticide Standards</a></li>	
+									<li><a href="/products/USP">USP Standards</a></li>
+									<li><a href="/products/wine-standards">Standards for Wine</a></li>
+									<li><a href="/products/cannabis">Cannabis</a></li>	
+									<li><a href="/organic_international.aspx">Organic International</a></li>
+								</ul>
+							</li>
+							<li><a href="/products/custom-standards.aspx">Custom Products</a>
+								<ul class="sub-sub-menu">
+									<li><a href="/products/custom-standards_organic.aspx">Organic Standards</a></li>
+									<li><a href="/products/custom-standards_inorganic.aspx">Inorganic Standards</a></li>
+									<li><a href="/products/private-label.aspx">Private Label</a></li>
+									<li><a href="/products/oqpv-pq.aspx">SPEX CertiPrep IQ</a></li>
+									<li><a href="/products/chemical-processing-packaging.aspx">Chemical Processing/Packaging</a></li>
+								</ul>
+							</li>
+							<li><a href="/qc-samples.aspx">QC Samples</a></li>
+							<li><a href="/search_labstuff.aspx">Laboratory Products</a></li>
+							<li><a href="">C of A and SDS</a>
+								<ul class="sub-sub-menu">
+									<li><a href="/products/SPEXertificate.aspx">SPEXertificate</a></li>
+									<li><a href="/knowledge-base/MSDS.aspx">SDS</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-menu"><span class="nav-menu-indent"><a class="topm">Purchasing Options</a></span>
+						<ul class="sub-menu">
+							<li><a href="/purchase-options/ordering-information.aspx">Ordering Information</a></li>
+							<li><a href="/purchase-options/loyal-customer-program.aspx">Loyal Customer Programs</a></li>
+						</ul>
+					</li>
+					<li class="nav-menu"><span class="nav-menu-indent"><a class="topm">Knowledge Base</a></span>
+						<ul class="sub-menu">
+							<li><a href="#">Downloads</a>
+								<ul class="sub-sub-menu">
+									<li><a href="/knowledge-base/MSDS.aspx">SDS</a></li>
+									<li><a href="/products/SPEXertificate.aspx">SPEXertificates</a></li>
+									<li><a href="/knowledge-base/catalog-request.aspx">Catalogs &amp; Product Literature</a></li>
+								</ul>
+							</li>
+							<li><a href="#">Tools, Tips & Tricks</a>
+								<ul class="sub-sub-menu">
+									<li><a href="/knowledge-base/ask-a-chemist.aspx">Ask A Chemist</a></li>
+									<li><a href="/knowledge-base/dilutulator.aspx">Dilut-U-lator</a></li>
+									<li><a href="/knowledge-base/conversion-table.aspx">Conversion Table</a></li>
+									<li><a href="/knowledge-base/additional-tools.aspx">Additional Tools</a></li>
+								</ul>
+							</li>
+							<li><a href="#">Resources & Publications</a>
+								<ul class="sub-sub-menu">
+									<li><a href="/knowledge-base/webinars.aspx">Webinars</a></li>
+									<li><a href="/knowledge-base/posters-presentations">Posters &amp; Presentations</a></li>
+									<li><a href="/knowledge-base/appnotes-whitepapers">Application Notes &amp; White Papers</a></li>
+									<li><a href="/knowledge-base/SPEX-Speaker">SPEX Speaker</a></li>
+									<li><a href="/knowledge-base/optimize">Optimize <span class="new">NEW!</span></a></li>
+									<li><a href="/knowledge-base/resources">Recommended Reading</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li class="nav-menu"><span class="nav-menu-indent"><a class="topm">News &amp; Events</a></span>
+						<ul class="sub-menu">
+							<li><a href="/news-and-events/news_updates.aspx">News Updates</a></li>
+							<li><a href="/news-and-events/tradeshow-calendar.aspx">Events</a></li>
+							<li><a href="https://spexcertiprepblog.wordpress.com/" target="_blank">Blog</a></li>
+						</ul>
+					</li>
+					<li class="nav-menu"><span class="nav-menu-indent"><a class="topm">About</a></span>
+						<ul class="sub-menu">
+							<li><a href="/about-us/corporate-profile.aspx">Corporate Profile</a></li>
+							<li><a href="/about-us/directions.aspx">Directions</a></li>
+							<li><a href="/about-us/careers.aspx">Careers</a></li>
+							<li><a href="/about-us/certifications.aspx">Certifications</a></li>
+						</ul>
+					</li>
+					<li class="nav-menu last"><span class="nav-menu-indent"><a class="topm" href="/about-us/contact-us.aspx">Contact</a></span>
+						<ul class="sub-menu">
+							<li><a href="/about-us/sales-reps.aspx">Sales Reps</a></li>
+							<li><a href="/about-us/distributors.aspx">Distributors</a></li>
+							<li><a href="/feedback">Feedback</a></li>
+						</ul>
+					</li>					
+				</ul>
+			</div>
+			<div id="mapc"><asp:ContentPlaceHolder id="cphMap" runat="server"></asp:ContentPlaceHolder></div>
+			<asp:ContentPlaceHolder id="cpPageBanner" runat="server"></asp:ContentPlaceHolder>
+			<div class="page_margins">
+				<div id="breadcrumb"><asp:ContentPlaceHolder id="cphBreadcrumb" runat="server"></asp:ContentPlaceHolder></div>
+				<div id="productpage_tagline">
+					<img src="/images/sciencepassion_tagline.gif" width="179" height="17" alt="Your Science Is Our Passion" />
+				</div>
+				<div id="content">
+					<asp:ContentPlaceHolder id="cphBody" runat="server"></asp:ContentPlaceHolder>
+					<div id='_categories'>
+						<asp:ContentPlaceHolder id="categoriesList" runat="server"></asp:ContentPlaceHolder>
+					</div>
+					<div id='_category_products'>
+						<asp:ContentPlaceHolder id="categoryProductsList" runat="server"></asp:ContentPlaceHolder>
+					</div>
+					<div id='_product_view'>
+						<asp:ContentPlaceHolder id="productView" runat="server"></asp:ContentPlaceHolder>
+					</div>
+					<asp:ContentPlaceHolder id="navList" runat="server"></asp:ContentPlaceHolder>
+				</div>
+			</div>
+			<asp:ContentPlaceHolder id="cphBotBanner" runat="server"></asp:ContentPlaceHolder>
+			<div class="footer-wrapper">
+				<div class="float-footer <%=(ProductCountText !="No Items") ? "mobshow" : ""%>">
+					<div class="page_margins" style="padding: 8px 0 0 0;">
+						<div class="page">
+							<span id="footer_cart">
+							<div class="cart_lbl">Shopping Cart</div>
+							<div class="mobile_cart_lbl"></div>
+							<div id="totalitems" class="itemCount"><%=TotalProductCountNum%></div>
+								<%--<%= SPoints%> SPoints      --%>  
+								<!---->
+							<div class="footer_content">
+								<%=ProductCountText%> 
+								<span id="totalcost" style="padding:0 15px">|</span> Total: <span style="color:#A3B405;font-weight:bold;"><asp:Literal ID="ltrCurrencySymbol" runat="server" /><%=String.Format("{0:##,##0.00}", StartingPrice)%></span>
+							</div>
+							</span>
+							<div id="footer_right" style="float:right;">
+								<div class="footer_item float_footer_checkout" id="checkout_button"><a href="/order_summary.aspx">View Cart</a></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="default-footer">
+					<div class="footer-info-wrap">
+						<div class="footer-info">
+							<div class="info-box right-pad right-separator">
+								<div class="title">
+									CONTACT
+								</div>
+								<div class="info-box right-pad">
+									US Address<br />
+									<span>203 Norcross Avenue • Metuchen, NJ 08840</span><br />
+									<span>1.800.LAB.SPEX • +1.732.549.7144</span><br />
+									<span>Fax: 1.732.603.9647</span><br />
+									<span>CRMSales@spex.com</span><br />
+									<br />
+								</div>
+								<div class="info-box">
+									SPEX Europe<br />
+									<span>2 Dalston Gardens • Stanmore • HA7 1BQ • Uk</span><br />
+									<span>+44 (0) 208 204 6656 • +44 (0) 208 204 6654</span><br />
+									<span>spexeurope@spex.com • <a href="http://www.spexeurope.com">www.spexeurope.com</a></span><br />
+									<br />
+								</div>
+								<div class="clear"></div>
+							</div>
+							<div class="info-box right-pad right-separator">
+								<div class="title">
+									CERTIFY
+								</div>
+								<a href="/about-us/certifications.aspx"><img src="/images/badge-iso-footer.png" alt="ISO" /></a>
+							</div>
+							<div class="info-box right-pad right-separator">
+								<div class="title">
+									EXPERIENCE
+								</div>
+								<a href="/SPEXperience"><img src="/images/spexexperience-footer.png" alt="SPEXperience" /></a>
+							</div>
+							<div class="info-box">
+								<div class="title">
+									CONNECT
+								</div>
+								<div class="socialControls">
+									<a class="fbBtn" target="_blank" href="https://www.facebook.com/spexcertiprep">fbBtn</a>
+									<a class="inBtn" target="_blank" href="http://www.linkedin.com/company/spex-certiprep">inBtn</a>
+									<a class="tweetBtn" target="_blank" href="https://twitter.com/SPEXCertiPrep">tweetBtn</a>
+									<a class="utubeBtn" target="_blank" href="http://www.youtube.com/user/SPEXCertiPrep">utubeBtn</a>
+									<a class="blogBtn" target="_blank" href="https://spexcertiprepblog.wordpress.com/">blogBtn</a>
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<div class="footer-copy-wrap">
+						<div class="footer-copy">
+							<span>&copy; <%=DateTime.Now.Year.ToString()%> SPEX CertiPrep. All Rights Reserved (Designed and Developed by Sci5 Development Inc.) | <a href="/Terms-and-Conditions-2017.pdf">Terms and Conditions</a> | <a href="/Privacy-Policy-2017.pdf">Privacy Policy</a> | <a href="/sitemap.aspx">Sitemap</a></span>
+						</div>
+					</div>
+				</div>
+				<div class="mobile-footer" style="display:none;">
+					<div class='simple-footer'>	
+						<div class='simple-footer-container'>	
+							<div class="box3 fl">
+								<div class="social-box">
+									
+								</div>
+							</div>
+							<div class="box1">
+								<p class="footer-head-title">US Address</p>
+								<ul class="footer-li">
+									<li><span class="address_icon"><span>203 Norcross Avenue Metuchen, NJ 08840</span></span></li>
+									<li><span class="cellphone_icon"><span>1-800-LAB-SPEX</span></span></li>
+									<li><span class="printer_icon"><span> 1-732-603-9647</span></span></li>
+									<li><span class="email_icon"><span>crmsales@spex.com</span></span></li>
+									<li><span class="pencil_icon"><span><a href="/contact-us.aspx">Contact Form</a></span></span></li>
+									<li>&nbsp;</li>
+								</ul>
+							</div>
+							<div class="box2">
+								<p class="footer-head-title">SPEX Europe</p>
+								<ul class="footer-li">
+									<li><span class="address_icon"><span>2 Dalston Gardens, Stanmore, HA7 1BQ, UK</span></span></li>
+									<li><span class="cellphone_icon"><span>+44(0)208 2046656</span></span></li>
+									<li><span class="printer_icon"><span>+44(0)208 2046654</span></span></li>
+									<li><span class="email_icon"><span>spexeurope@spex.com</span></span></li>
+									<li><span class="order_icon"><span><a href="http://www.spexeurope.com">www.spexeurope.com</a></span></span></li>
+									<li><span class="pencil_icon"><span><a href=" http://www.spexeurope.com/contact-us.aspx">Contact Form</a></span></span></li>
+								</ul>
+							</div>
+							<br />
+							<div class="badge-box">
+								<a href="/about-us/certifications.aspx"><img style="margin-top: 5px;" src='/images/badge-icons.png'/></a><br /><br />
+									
+									&copy;SPEX CertiPrep. All Rights Reserved <%=DateTime.Now.Year.ToString()%><br><br>
+								<a href="/Terms-and-Conditions-2017.pdf">Terms and Conditions</a> | <a href="/Privacy-Policy-2017.pdf">Privacy Policy</a> | <a href="/sitemap.aspx">Sitemap</a><br><br>
+								Designed and Developed by <a href="http://www.sci5.com/" target="_blank">Sci5 Development Inc</a>.
+								<div class="clearboth"></div>
+							</div>
+							<div class="clearboth"></div>
+						</div>				
+					</div>
+				</div>
+			</div>
+			<style>
+				#fancybox-outer
+				{
+				 background:none!important;
+				 border:0px!important;
+				 border-radius:0px!important;
+				}
+				#fancybox-close {
+				top: -2px;
+				right: -2px;
+				}	
+				.fancy-bg { visibility:hidden; }	
+			</style>     
+			<div style="display:none;">
+				<div id="promo-pop-up">
+					<p class="link"><a href="/search.aspx"><img src="/images/popupbtn.png" /></a></p>
+					<p class="header"><span style="color:#e4840b">Save 15%</span> when you enter promo code <span style="color:#8bc500">SPRING15-16</span><br>
+					on your next online order of $100 or more</p>
+					<ul>
+						<li>Promo code valid on Organic and Inorganic products.</li>
+						<li>Minimum order amount is $100</li>
+						<li>Must enter promo code SPRING15-16 when ordering.</li>
+						<li>Valid on direct, US orders only.</li>
+						<li>Not valid on Flux, Oil Standards and ERA QC Samples.</li>
+					</ul>
+					<p class="bottom">Not valid with any other promotions. One per customer. Offer expires <span style="font-weight:bold">6/15/2016.</span></p>			
+				</div>
+			</div>
+			<div class="itemAddBox">
+				<div class="itemAdd"><a href="/order_summary.aspx" title="View Cart">Item Added to Cart</a></div>
+				<div class="cartLink">
+					<a href="/order_summary.aspx" title="View Cart"><img src="/images/itemaddcart.png" /></a>
+				</div>
+			</div>
+		</form>
+		<script src="/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+		<script src="/js/curvycorners-2.1.js" type="text/javascript"></script>
+		<script src="/js/jquery.pngFix.js" type="text/javascript"></script>
+		<script src="/fancybox/jquery.fancybox.js"></script>
+		<script src="/js/scripts_sub.js" type="text/javascript"></script>
+		<script src="/js/placeholders.min.js" type="text/javascript"></script>
+		<script src="/js/jquery.dd.js" type="text/javascript"></script>
+		<script src="/js/jquery.print-preview.js" type="text/javascript"></script>
+		<script src="/js/jquery.customSelect.js" type="text/javascript"></script>
+		<script src="/js/jquery.dataTables.min.js" type="text/javascript"></script>
+		<script src="/js/jQuery.succinct.min.js" type="text/javascript"></script>
+		<script src="/js/jquery.shorten.min.js" type="text/javascript"></script>
+		<script src="/js/jquery.nailthumb.1.1.min.js" type="text/javascript"></script>
+		<!--[if lt IE 9]><script src="/js/PIE_IE678.js" type="text/javascript"></script><![endif]-->
+		<!--[if IE 9]><script src="/js/PIE_IE9.js" type="text/javascript"></script><![endif]-->
+		<script type='text/javascript'>
+			(function (d, t) {
+			  var bh = d.createElement(t), s = d.getElementsByTagName(t)[0];
+			  bh.type = 'text/javascript';
+			  bh.src = '//www.bugherd.com/sidebarv2.js?apikey=nwm1rginszehjpjr89eyog';
+			  s.parentNode.insertBefore(bh, s);
+			})(document, 'script');
+		</script>
+		<!--<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.css" />
+		<script src="//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/3.0.3/cookieconsent.min.js"></script>
+		<script>
+		window.addEventListener("load", function(){
+		window.cookieconsent.initialise({
+		  "palette": {
+			"popup": {
+			  "background": "#5b5c5b",
+			  "text": "#ffffff"
+			},
+			"button": {
+			  "background": "#ec8c15",
+			  "text": "#ffffff"
+			}
+		  },
+		  "theme": "classic",
+		  "content": {
+			"href": "https://www.spexcertiprep.com/Privacy-Policy-2017.pdf"
+		  }
+		})});
+		</script>-->
+
+		<script type="application/ld+json">
+			{
+				"@context": "http://schema.org",
+				"@type": "Organization",
+				"url": "http://www.spexcertiprep.com",
+				"logo": "http://www.spexcertiprep.com/images/certiprep_logo_new.png",
+				"contactPoint" : [
+					{ "@type" : "ContactPoint",
+						"telephone" : "+1-800-LAB-SPEX",
+						"email" : "crmsales@spex.com",
+						"contactType" : "Sales Representative",
+						"areaServed" : "US"
+					},
+					{ "@type" : "ContactPoint",
+						"telephone" : "+44 (0) 208 2046656",
+						"email" : "sales@spexcertiprep.co.uk",
+						"contactType" : "Sales Representative",
+						"areaServed" : "UK"
+					}
+				] 
+			}
+		</script>
+		<script>
+			$(document).ready(function(){
+				function open_chat_win() {
+					var w = 640, h = 480;
+					if (document.all || document.layers) {
+						w = screen.availWidth;
+						h = screen.availHeight;
+					}
+					var leftPos = (w - 640) / 2, topPos = (h - 480) / 2;
+					xlaALSwindow = window.open("http://spexcsp.com/chat/UserPreChat.aspx?ref=http%3a%2f%2fspexcertiprep.com%2fdefault.aspx&d=1&u=&bypass=", "ALSRoom", "toolbar=0,location=0,status=0,menubar=0,scrollbars=1,resizable=1,width=640,height=480,top=" + topPos + ",left=" + leftPos);
+					xlaALSwindow.focus();
+				}
+				$("#login-handle").click(function(){
+					$('#login_container_opacity').show(500);
+					$(".mask-layout").show();
+					$(".mask-layout").css("height", $("body").height());
+				});
+
+				//for the existing customers please login handler in register.aspx
+				$("#myAcc").click(function(){
+					$('#login_container_opacity').show(500);
+					$("#redirect").val("?cc=customer-center/current-orders/");
+					$(".mask-layout").show();
+					$(".mask-layout").css("height", $("body").height());
+				});
+				
+				
+				$(".close-x").click(function(){
+					$('#login_container_opacity').hide();
+					$('.mask-layout').hide();
+					$('.login-container-opacity #errorbox').hide();
+				});
+				$('.live-chat').click( $('.topa-right_link.chat a').attr('onclick'));
+				
+				$("input[id^='buy_']").click(function () {
+					setTimeout(function(){itemAddShow();},800);
+				});
+				$(".live-chat").click(function() {
+					open_chat_win();
+				});
+				$("#clientScreenHeight").val($("body").height());
+				if ($(".mobile_menu").length > 0 ){
+					$('#banner-div').before(jQuery('.mobile_menu'));
+				}
+				
+				$("a.promoBanner").fancybox({
+					'transitionIn'		:	'elastic',
+					'transitionOut'		:	'elastic',
+					'speedIn'			:	300, 
+					'speedOut'			:	200, 
+					'overlayShow'		:	true,
+					'width'				: 	581,
+					'height'			:	292,
+					'overlayColor'		:	'#000',
+					'overlayOpacity'	:	0.8,
+					'centerOnScroll'	:  	true
+				});
+				
+				$("#searchbox").keyup(function(event){
+					if(event.keyCode == 13){
+						searchbutton_Click();
+					}
+				});
+				setTimeout(function(){
+					if ($(window).width() <= 384) {
+						$(".site_logo").attr("src", "/images/mobile-logo.png");
+						$(".site_logo").css("width", "320px");
+						$(".site_logo").css("height", "92px");
+					}
+					if ($(window).width() <= 240) {
+						$(".site_logo").css("width", "231px");
+						$(".site_logo").css("height", "92px");
+					}
+				}, 3000);
+				
+				if ($(window).width() <= 384) {
+					$(".site_logo").attr("src", "/images/mobile-logo.png");
+					$(".site_logo").css("width", "320px");
+					$(".site_logo").css("height", "92px");
+				}
+				if ($(window).width() <= 240) {
+					$(".site_logo").css("width", "231px");
+					$(".site_logo").css("height", "92px");
+				}
+				$(".mobile_menu li").each(function() {
+					if ($(this).children("ul").length > 0) {
+						$(this).append("<div class='menu-arrow-box'></div>");
+					}
+				});
+				$(".menudrop").click(function() {
+					$(".mobile_menu").slideToggle("fast");
+				});
+				$(".menu-arrow-box").click(function() {
+					var parent = $(this).parent();
+					$('> ul.sub-menu',parent).slideToggle("fast");
+				});
+				$(".menu-arrow-box").click(function() {
+					var parent = $(this).parent();
+					$('> ul.sub-sub-menu', parent).slideToggle("fast");
+					$(this).toggleClass("menu-arrow-box-up");
+				});
+				try {
+					$("#regionDD").msDropDown();
+				} catch (e) {
+				//	alert(e.message);
+				}
+				
+				setInterval(function(){
+					$(".headerCart").load("/utility/addtosmallcart.aspx");
+				}, 500);
+				
+			});
+			
+			function itemAddShow() {
+				$('.float-footer').addClass("mobshow");
+				$(".itemAddBox").fadeIn("slow");
+				setTimeout(function() {
+					$(".itemAddBox").fadeOut("slow");
+				}, 4000);
+			}
+			
+			function searchbutton_Click() {
+				var searchVal = $("#searchbox").val();
+				if(searchVal.trim().length > 0) {
+					//alert($("#searchbox").val());
+					//window.location.replace("/search.aspx?search=" + searchVal.trim());
+					$("#searchbutton").trigger("click");
+				}
+			}
+			function ExecuteCodeBehindClickEvent() {
+				//Get the Button reference and trigger the click event
+				console.log("logout initiate");
+				document.getElementById("logoutLink").click();
+				console.log("logout triggered");
+			}
+		</script>
+		<asp:ContentPlaceHolder id="cphFooter" runat="server"></asp:ContentPlaceHolder>
+		
+		<script type="text/javascript">
+			var root = window.location.pathname;
+			//console.log(root);
+			if (root == "/") {
+				var ptype = 'home';
+				window.google_tag_params = {
+					ecomm_pagetype: ptype
+				};
+			}else if ($('#resultstable').length && root != "/order_summary.aspx"){
+				var ptype = 'category';
+				window.google_tag_params = {
+					ecomm_pagetype: ptype
+				};
+			}else if ($('.product_details_wrap').length) {
+				var pid = $('#prod-part').text().trim();
+				var ptype = 'product';
+				var tot = parseFloat($('.price').text().replace('$', '').trim());
+				window.google_tag_params = {
+					ecomm_prodid: pid,
+					ecomm_pagetype: ptype,
+					ecomm_totalvalue: tot
+				};
+			}else if (root == "/order_summary.aspx" && $('.thankyou').length == 0) {
+				var pid = [];
+				$('.hiddenPart').each(function() {
+					pid.push($(this).val());
+				});
+				var ptype = 'cart';
+				var tot = parseFloat($('.ltrTotal').text().replace('$', '').trim());
+				window.google_tag_params = {
+					ecomm_prodid: pid,
+					ecomm_pagetype: ptype,
+					ecomm_totalvalue: tot
+				};
+			}else if (root == "/order_summary.aspx" && $('.thankyou').length) {
+				var pid = [];
+				$('.hiddenPart').each(function() {
+					pid.push($(this).val());
+				});
+				var ptype = 'purchase';
+				var tot = parseFloat($('.ltrTotal').text().replace('$', '').trim());
+				window.google_tag_params = {
+					ecomm_prodid: pid,
+					ecomm_pagetype: ptype,
+					ecomm_totalvalue: tot
+				};
+			}else {
+				var pid = '';
+				var ptype = 'other';
+				var tot = 0;
+				window.google_tag_params = {
+					ecomm_pagetype: ptype,
+				};
+			}
+			
+			dataLayer.push({
+				'google_tag_params':window.google_tag_params,
+				'event':'remarketing_dr'
+			});
+			
+		</script>
+		<!-- Google Code for All Visitors -->
+		<!-- Remarketing tags may not be associated with personally identifiable information or placed on pages related to sensitive categories. For instructions on adding this tag and more information on the above requirements, read the setup guide: google.com/ads/remarketingsetup -->
+		<script type="text/javascript">
+			/* <![CDATA[ */
+			var google_conversion_id = 1051567786;
+			var google_conversion_label = "CMhKCPSFxwIQqs229QM";
+			var google_custom_params = window.google_tag_params;
+			var google_remarketing_only = true;
+			/* ]]> */
+		</script>
+		<script type="text/javascript" src="//www.googleadservices.com/pagead/conversion.js"></script>
+		<noscript>
+			<div style="display:inline;">
+				<img height="1" width="1" style="border-style:none;" src="//googleads.g.doubleclick.net/pagead/viewthroughconversion/1051567786/?value=0&amp;label=CMhKCPSFxwIQqs229QM&amp;guid=ON&amp;script=0"/>
+			</div>
+		</noscript>
+		<!--<script type="text/javascript">
+			/* <![CDATA[ */
+			var google_conversion_id = 1051567786;
+			var google_conversion_language = "en";
+			var google_conversion_format = "3";
+			var google_conversion_color = "ffffff";
+			var google_conversion_label = "CMhKCPSFxwIQqs229QM";
+			var google_conversion_value = 0;
+			/* ]]> */
+		</script>
+		<script type="text/javascript" src="https://www.googleadservices.com/pagead/conversion.js"></script>
+		<noscript>
+			<div style="display:inline;">
+			<img height="1" width="1" style="border-style:none;" alt="" src="https://www.googleadservices.com/pagead/conversion/1051567786/?label=CMhKCPSFxwIQqs229QM&amp;guid=ON&amp;script=0"/>
+			</div>
+		</noscript><script type="text/javascript" src="/js/vtrack.js"></script>-->
+		
+	</body>
+</html>
