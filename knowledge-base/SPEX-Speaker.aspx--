@@ -1,0 +1,188 @@
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Inside.master" AutoEventWireup="true" CodeFile="SPEX-Speaker.aspx.cs" Inherits="knowledge_base_SPEX_Speaker" %>
+<%@ Register src="~/_controls/ShareThis.ascx" tagname="ShareThis" tagprefix="uc1" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="cphHead" Runat="Server">
+	<script src="/js/jquery-ui.js" type="text/javascript"></script>
+	<script>
+		$(document).ready(function() {
+			$("form").submit(function(){
+			//$("#cmdSubmit").click(function() {
+				//alert("submited");
+				var fullName = $("#fullname").val();
+				var firstName = fullName.split(' ').slice(0, -1).join(' ');
+				var lastName = fullName.split(' ').slice(-1).join(' ');
+				
+				var dataValue = "ca=28af1f9c-a310-47f4-8f27-7ffdf28c1b46&list=1626433698&source=EFD&email=" + $("#email_check").val() + "&first_name=" + firstName + "&last_name=" + lastName + "&address_country=" + $("#Country").val() + "&address_street=" + $("#address").val() + "&address_city=" + $("#city").val() + "&address_state=" + $("#state_region").val() + "&address_postal_code=" + $("#zip").val() + "&company=" + $("#Company").val();
+				
+				$.ajax({
+					url: 'https://visitor2.constantcontact.com/api/signup',
+					type: "POST",
+					data: dataValue,
+					contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+					success: function (data) {
+						$('#result').html(data.d);
+					}
+				});
+			});
+			
+			var imgs = $('.CustomOS_logo img');
+			var numberOfimgs = imgs.length;
+			var currentImg = numberOfimgs;
+			var last = numberOfimgs - (numberOfimgs - 1);
+			
+			console.log("num:" + numberOfimgs +" last:" + last);
+			
+			function changeImg() {
+				var currImg = $("#issue" + currentImg);
+
+				showHide(currImg);
+								
+				if (currentImg == last) {
+					imgs.fadeIn("slow");
+					currentImg = numberOfimgs;
+				}else {
+					currentImg--;
+				}
+				
+				
+				console.log("curr:" + currentImg);
+			}
+			
+			function showHide(currImg) {
+				if (currImg.css("display") == "none") {
+					currImg.fadeIn("slow");
+				}else {
+					currImg.fadeOut("slow");
+				}
+			}
+			
+			//setInterval(changeImg, 5000);
+			
+			$("a.speakerRequestLink").fancybox();
+			$("#form1").append($("#floatlayer"));
+			$("#form1").append($("#fancybox-tmp"));
+			$("#form1").append($("#fancybox-loading"));
+			$("#form1").append($("#fancybox-overlay"));
+			$("#form1").append($("#fancybox-wrap"));
+		});
+	</script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphBreadcrumb" Runat="Server"><a href="../default.aspx">Home</a> > Knowledge Base > SPEX Speaker</asp:Content>
+<asp:Content ID="ContentHeader" ContentPlaceHolderID="cpPageBanner" Runat="Server">
+	<div id="banner-div" class="speaker">
+		<!--<img class="category-banner-img" src="img/category-banner-organic.png" alt="Organic Certified Reference Materials" />-->
+		<div class="banner-label-wrapper" id="spex-speaker_banner-label-wrapper">
+			<!--<img class="banner-label" src="img/banner-organic-label.png">-->
+			<h1 style="color:transparent">SPEX Speaker on Evolution of Pesticides</h1>
+			<img class="banner-image-right" id="spex-speaker_banner-image-right" src="/images/top-banner.jpg">
+			<p class="speaker-intro" id="spex-speaker_speaker-intro">Our new issue of SPEX Speaker is ready. Spring 2016 Issue of SPEX Speaker on Evolution of Pesticides.<br>
+			<a target="_blank" href="/uploads/SpexSpeaker-Spring2016.pdf" id="spex-speaker_speaker-intro_a">Click here to view or download.</a></p>
+		</div>
+		<div class="banner-shadow"></div>
+	</div>	
+</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="cphBody" Runat="Server">
+            
+			<div id="main">
+                <div id="col1" style="text-align:center">
+                    <div id="col1_content" class="CustomOS_logo" style="height:244px;">
+						<img id="issue1" class="optimize_issue" src="/images/spex-speaker-thumb.png" />
+						<div class="clearboth"></div>
+                    </div>
+					<br><br>
+					<a class="speakerRequestLink" href="#requestFormBox">Request a Physical Copy</a>
+                </div>
+                <div id="col3">
+                    <div id="col3_content" class="clearfix">
+                        <div id="newsletters">						
+							<h2 style="font-size:25px; font-weight:600">SPEX Speaker Archive</h2>
+							<p>Behold The SPEX® Speaker -  the complete run of the unique trade journal that between 1956 and 1983   published articles about a wide variety of spectrographic  methods and   techniques, while showcasing SPEX® products. Art and Harriet Mitteldorf, who founded SPEX Industries, Inc. in 1954, started by selling graphite electrodes and spectrographic plates and film for   arc/spark spectroscopy. They quickly developed their own analytical   standards and sample preparation equipment, and those two traditions and   product lines are proudly continued today by SPEX CertiPrep®, Inc., and SPEX® SamplePrep LLC.</p>                                  
+							<p>Visit the <a href="http://www.spexspeaker.com">SPEX Speaker</a> archive and take a trip through the history of spectroscopy.</p>
+							
+							<div class="prod-spotlight">
+								<p>Tired of mixing your own standards?<br></p>
+								<p><span style="color:#a3b405">SPEX CertiPrep</span> <span>can make Custom<br>Organic Certified Reference<br>Materials (CRMs) for you.</span></p>
+								<a href="http://www.spexcertiprep.com/products/custom-standards_organic.aspx">Click Here to Learn More</a>
+							</div>
+							
+							<div style="display:none">
+								<div id="requestFormBox">
+									<div class="headerlabel">
+										<div class="title">Request a Physical Copy</div>       
+									</div>  
+									<asp:Panel ID="downloadform" ClientIDMode="Static" CssClass="yform" DefaultButton="cmdSubmit" runat="server">
+										<p>By requesting a copy of our new issue, you are now eligible to recieve all our future SPEX Speaker issues.</p>
+										<span class="req-label"><span class="req">*</span> Required Fields</span>
+										<div class="leftCol">
+											<div class="type-text">
+												<span class="req-left">*</span>
+												<asp:TextBox ID="fullname" placeholder="Name" runat="server" CssClass="input-260" MaxLength="30" TabIndex="1" />
+											</div>
+											<asp:RequiredFieldValidator ID="rfvfullname" ControlToValidate="fullname" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="This field is required" ValidationGroup="vgNew" />
+											<div class="type-text">
+												<span class="req-left">*</span>
+												<asp:TextBox ID="email_check" placeholder="Email Address" runat="server" ClientIDMode="Static" CssClass="input-260" MaxLength="50" TabIndex="3" />	
+											</div>
+											<asp:RequiredFieldValidator ID="rfvemail_check" ControlToValidate="email_check" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="This field is required" ValidationGroup="vgNew" />
+											<asp:RegularExpressionValidator ID="revemail_check" ControlToValidate="email_check" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="Please enter a valid email address." ValidationGroup="vgNew" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" />
+											<div class="type-text">
+												<span class="req-left">*</span>
+												<asp:TextBox ID="city" placeholder="City" runat="server" CssClass="input-260" MaxLength="15" TabIndex="5" />
+											</div>
+											<asp:RequiredFieldValidator ID="rfvcity" ControlToValidate="city" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="This field is required" ValidationGroup="vgNew" />
+											<div class="type-select req" style="width:97%;">
+												<span class="req-left">*</span>
+												<div class="selectbg" style="width:100%;">
+													<div class="IEmagic">
+														<asp:DropDownList ID="Country" runat="server" CssClass="input-273" AppendDataBoundItems="true" DataSourceID="dataCountries" DataTextField="countryname" DataValueField="countryCode" style="width:100%;" TabIndex="7">
+															<asp:ListItem Value="" Text="Select Country" selected />
+														</asp:DropDownList>
+													</div>
+												</div>
+											</div>
+											<asp:RequiredFieldValidator ID="rfvCountry" ControlToValidate="Country" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="This field is required" ValidationGroup="vgNew" />
+										</div>
+										<div class="rightCol">
+											<div class="type-text">
+												<span class="req-left">*</span>
+												<asp:TextBox ID="Company" placeholder="Company Name" runat="server" CssClass="input-260" MaxLength="30" TabIndex="2" />
+											</div>
+											<asp:RequiredFieldValidator ID="rfvCompany" ControlToValidate="Company" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="This field is required" ValidationGroup="vgNew" />
+											<div class="type-text">
+												<span class="req-left">*</span>
+												<asp:TextBox ID="address" placeholder="Address" runat="server" CssClass="input-260" MaxLength="30" TabIndex="4" />
+											</div>
+											<asp:RequiredFieldValidator ID="rfvAddress" ControlToValidate="address" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="This field is required" ValidationGroup="vgNew" />
+											<div class="type-text">
+												<span class="req-left">*</span>
+												<asp:TextBox ID="state_region" placeholder="State/Province/Region" runat="server" CssClass="input-260" MaxLength="30" TabIndex="6" />
+											</div>
+											<asp:RequiredFieldValidator ID="rfvstate_region" ControlToValidate="state_region" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="This field is required" ValidationGroup="vgNew" />
+											<div class="type-text">
+												<span class="req-left">*</span>
+												<asp:TextBox ID="zip" placeholder="Zip Code" runat="server" CssClass="input-260" MaxLength="30" TabIndex="8" />
+											</div>
+											<asp:RequiredFieldValidator ID="rfvzip" ControlToValidate="zip" CssClass="formerror" Display="Dynamic" EnableClientScript="true" runat="server" SetFocusOnError="true" Text="This field is required" ValidationGroup="vgNew" />
+										</div>
+										<div class="fullCol">
+										</div>
+										<asp:Button ID="cmdSubmit" Text="submit" runat="server" CssClass="subBtn" onclick="cmdSubmit_Click" ValidationGroup="vgNew" TabIndex="9" />
+										<div class="clearboth"></div>
+									</asp:Panel>
+								</div>
+							</div>
+                        </div>						
+                    </div>
+                    <div id="ie_clearing"> &nbsp; </div>
+                </div>
+            </div>
+	<asp:SqlDataSource ID='dataCountries' runat="server" ConnectionString="<%$ ConnectionStrings:SPEXCertiPrep %>" ProviderName="<%$ ConnectionStrings:SPEXCertiPrep.ProviderName %>"
+        SelectCommand="sp_GetCountryList" SelectCommandType="StoredProcedure">
+    </asp:SqlDataSource>
+
+</asp:Content>
+
+<asp:Content ID="Content4" ContentPlaceHolderID="cphFooter" Runat="Server">
+</asp:Content>
+
+

@@ -1,0 +1,53 @@
+<%@ Page Title="Spectroscopy | SPEX CertiPrep" Language="C#" MasterPageFile="~/Inside.master" AutoEventWireup="true" CodeFile="spectroscopy.cs" Inherits="thank_you" %>
+
+<asp:Content ID="Content1" ContentPlaceHolderID="cphHead" Runat="Server">
+</asp:Content>
+<asp:Content ID="ContentBanner" ContentPlaceHolderID="cpPageBanner" Runat="Server">
+	<div id="banner-div" class="spectroscopy">
+		<div class="banner-label-wrapper">
+			<h1 class="banner-header spectroscopy">TIRED OF MIXING <br>YOUR OWN <br>STANDARDS?</h1>
+		</div>
+	</div>	
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="cphBreadcrumb" Runat="Server"><a href="/">Home</a> > <a href="/knowledge-base">Knowledge Base</a> > Spectroscopy</asp:Content>
+<asp:Content ID="Content3" ContentPlaceHolderID="cphBody" Runat="Server">
+            <div id="main">
+				<div id="titleHeader">
+					<h2>INORGANIC CUSTOM CERTIFIED REFERENCE MATERIALS</h2>
+					<br>
+				</div>
+				<p style="margin-bottom:4em">SPEX CertiPrep is accredited by A2LA as complying with the requirements of ISO/IEC 17025 and ISO/IEC Guide 34. We offer custom Certified Reference Materials (CRMs) because we realize that no two laboratories face exactly the same samples, or have precisely the same requirements. Simply choose the Inorganic custom mix you need by filling out the online request form at <a href="/products/custom-standards_inorganic.aspx">www.spexcertiprep.com/products/custom-standards_inorganic.aspx</a></p>
+            </div>
+</asp:Content>
+<asp:Content ID="Content5" ContentPlaceHolderID="cphBotBanner" Runat="Server">
+			<div id="bot-banner">
+				<div class="value-time-sec">
+					<p>Let SPEX CertiPrep Save You Valuable Time</p>
+					<ul class="value-time-list">
+						<li>Customized for your application</li>
+						<li>Concentration, accuracy and stability guaranteed</li>
+						<li>High quality starting materials tested for impurities prior to use</li>
+						<li>Inorganic customs certified by ICP or ICP/MS</li>
+					</ul>
+					<ul class="value-time-list">
+						<li>Comprehensive certificate of analysis and SDS included</li>
+						<li>Dedicated technical support to answer your CRM and lab needs</li>
+						<li>Experience in manufacturing CRMs since 1954</li>
+						<li>Manufactured and shipped within 5 business days</li>
+					</ul>
+					<div class="clearboth"></div>
+				</div>
+			</div>
+			<div id="bot2-banner">
+				<div>
+					<img class="icon" src="/images/bottle-icon.png" alt="Bottle Icon" />
+					<p>Inorganic Custom Certified Reference Materials for <br>LC-ICP/MS | ICP/MS | ICP | IC | AA</p>
+					<a class="visit-btn" href="/products/custom-standards_inorganic.aspx" title="Visit Now"><img src="/images/visit-btn.png" alt="Visit Now" /></a>
+					<div class="clearboth" style="padding:0"></div>
+				</div>
+			</div>
+</asp:Content>
+<asp:Content ID="Content4" ContentPlaceHolderID="cphFooter" Runat="Server">
+</asp:Content>
+
+
