@@ -1,0 +1,16 @@
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="addtocart.aspx.cs" Inherits="equipment_and_accessories_addtocart" %>
+
+    <div id="shoppingcart_box">SHOPPING CART</div>
+    <div class="footer_item" id="totalitems">
+        <%=ProductCountText%>
+    </div>
+    <div class="footer_item" id="totalcost">
+        <asp:Literal ID="ltrCurrencySymbol" runat="server" /><%=StartingPrice%> Total        
+    </div>
+    <div class="footer_item" id="totalsavings">
+        <asp:Literal ID="ltrCurrencySymbol2" runat="server" /><%=FinalDiscount %> Savings
+    </div>
+    <div class="footer_item" id="totalspoints">
+        <%=TotalSpoints%> Spoints
+    </div>
+    <div class="footer_update">Product <%=PartID %> added to cart</div>
