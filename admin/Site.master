@@ -1,0 +1,184 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Site.master.cs" Inherits="SiteMaster" %>
+
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> | SPEX CertiPrep</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/admin/css/bootstrap.min.css" rel="stylesheet">
+	
+    <!-- Morris Charts CSS -->
+    <link href="/admin/css/plugins/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="/admin/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="/admin/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+
+    <link href="/admin/css/pagination.css" rel="stylesheet" type="text/css">
+	
+	<link href="/admin/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css">
+	<link href="/admin/dropzone/basic.min.css" rel="stylesheet" type="text/css">
+	<link href="/admin/dropzone/dropzone.min.css" rel="stylesheet" type="text/css">
+	
+	<link href="/admin/colorpicker/css/colorpicker.css" rel="stylesheet" type="text/css">
+	
+	<!-- Custom CSS -->
+    <link href="/admin/css/admin.css" rel="stylesheet">
+
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+	
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+	
+</head>
+<body>
+    <!-- jQuery -->
+    <script src="/admin/js/jquery.js"></script>
+	<script src="/admin/js/external/jquery.hotkeys.js"></script>
+    <!-- jQuery UI -->
+    <script src="/admin/js/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/admin/js/bootstrap.min.js"></script>
+
+    <!-- Morris Charts JavaScript -->
+    <script src="/admin/js/plugins/morris/raphael.min.js"></script>
+
+    <!-- Table Sorter JavaScript -->
+    <script src="/admin/js/jquery.tablesorter.min.js"></script>
+	
+	<script src="/admin/tinymce/tinymce.min.js"></script>
+	
+	<script src="/admin/fancybox/jquery.fancybox.js"></script>
+	
+	<script src="/admin/dropzone/dropzone.min.js"></script>
+	
+	<script src="/admin/js/plugins/tabs/jquery.easytabs.min.js"></script>
+	
+	<script src="/admin/colorpicker/js/colorpicker.js"></script>
+	<script src="/admin/colorpicker/js/eye.js"></script>
+	<script src="/admin/colorpicker/js/utils.js"></script>
+	
+	<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+	
+    <script>
+        $(document).ready(function () {
+            var currURL = window.location.pathname;
+            $("ul.nav.navbar-nav.side-nav li").each(function () {
+                var navURL = $("a", this).attr("href");
+                if (navURL == currURL) {
+                    $(this).addClass("active");
+                }
+            });
+			
+        });
+		tinymce.init({ 
+			selector:'.main-editor', 
+			content_css : '/css/screen/style.css',
+			plugins: "image, link, code, textcolor, media",
+			relative_urls: false,
+			remove_script_host : true,
+			document_base_url : "<%=baseURL%>",
+			menu : {
+				edit: {title: 'Edit', items: 'undo redo | cut copy paste pastetext | selectall'},
+				insert: {title: 'Insert', items: 'link media | template hr'},
+				view: {title: 'View', items: 'visualaid'},
+				format: {title: 'Format', items: 'bold italic underline strikethrough superscript subscript | formats | removeformat'},
+				tools: {title: 'Tools', items: 'spellchecker code'}
+			},
+			toolbar: [
+				'undo redo | styleselect | forecolor backcolor bold italic | link image | alignleft aligncenter alignright | bullist numlist | code'
+			],
+			entity_encoding: "numeric"
+		});
+		
+    </script>
+	<div class="overlay">
+		<div class="loadingBox"><div class="gear"></div>
+	</div>
+    <div id="wrapper">
+        <form runat="server">
+            <!-- Navigation -->
+            <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/admin/dashboard.aspx"><img src="/images/home.png" alt="Home"></a>
+                </div>
+                <!-- Top Menu Items -->
+                <ul class="nav navbar-right top-nav">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%=HttpContext.Current.Session["displayname"] %> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <asp:LinkButton  ID="lbLogout" runat="server" Text="<i class='fa fa-fw fa-power-off'></i> Log Out" onclick="lbLogout_Click" />
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+                <div class="collapse navbar-collapse navbar-ex1-collapse">
+                    <ul class="nav navbar-nav side-nav">
+                        <li>
+                            <a href="/admin/dashboard.aspx"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        </li>
+						<li>
+                            <a href="/admin/orders/"><i class="fa fa-fw fa-list-alt"></i> Web Order Details</a>
+                        </li>
+						<li>
+                            <a href="/admin/users/"><i class="fa fa-fw fa-users"></i> Users</a>
+                        </li>
+						<li>
+                            <a href="/admin/banners/"><i class="fa fa-fw fa-bullhorn"></i>Notification Banner</a>
+                        </li>
+						<li>
+                            <a href="/admin/news/"><i class="fa fa-fw fa-newspaper-o"></i> News</a>
+                        </li>
+						<li>
+                            <a href="/admin/events/"><i class="fa fa-fw fa-calendar"></i> Events</a>
+                        </li>
+                       
+						<li>
+                            <a href="/admin/careers/"><i class="fa fa-fw  fa-suitcase"></i> Careers</a>
+                        </li>
+						<li>
+                            <a href="/admin/question/"><i class="fa fa-fw fa-question-circle"></i>"Ask A Chemist" Question</a>
+                        </li>
+						<li>
+                            <a href="/admin/literatures/"><i class="fa fa-fw fa-book"></i>Product Literatures</a>
+                        </li>
+						 <li>
+                            <a href="/admin/sliders/"><i class="fa fa-fw fa-image"></i> Sliders</a>
+                        </li>
+						<li>
+                            <a href="/admin/cannabis/"><i class="fa fa-fw fa-pagelines"></i>Cannabis Pages</a>
+                        </li>
+						<li>
+                            <a href="/admin/cannabisupdates/"><i class="fa fa-fw fa-leaf"></i>Cannabis Updates</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </nav>
+            <div id="page-wrapper">
+                <div class="container-fluid">
+                    <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+                    <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+                </div>
+            </div>
+			
+			<div id="footer">© 2015-2016 Sci5 Development Inc. Version 3.0</div>
+			
+        </form>
+    </div>
+
+</body>
+</html>
